@@ -1,148 +1,807 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>シンプルなWebサイト</title>
+  <title>Breeze & Coffee | 予約ページ</title>
 
   <style>
-    /* ページ全体 */
+    /* ====================
+       ページ全体
+    ==================== */
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
-      padding-bottom: 100px;
+    html {
+      scroll-behavior: smooth;
+    }
 
-      /* 背景 */
+    body {
+      font-family:
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+
+      color: #333;
+      line-height: 1.7;
+
       background: linear-gradient(
         135deg,
-        #eafff4,
-        #ffffff
+        #f3fff8,
+        #fffaf5
       );
-      min-height: 100vh;
     }
 
-    /* ヘッダー */
+
+    /* ====================
+       ヘッダー
+    ==================== */
+
     header {
       background-color: #33FF99;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 20px 50px;
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo h1 {
+      font-size: 24px;
       color: #fff;
-      text-align: center;
-      padding: 35px 25px;
     }
 
-    header h1 {
-      font-size: 28px;
+    nav {
+      display: flex;
+      gap: 25px;
     }
 
-    /* メインコンテンツ */
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 35px;
-      color: #000;
-
-      /* 白いカード */
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    section:last-child {
-      margin-bottom: 0;
-    }
-
-    section h2 {
-      border-left: 5px solid #33FF99;
-      padding-left: 10px;
-      margin-bottom: 15px;
-    }
-
-    section p {
-      font-size: 16px;
-    }
-
-    /* フッター */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #fff;
-      color: #000;
-      text-align: center;
-      padding: 15px;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    /* ソーシャルメディアリンク */
-    footer a {
-      color: #000;
+    nav a {
+      color: #fff;
       text-decoration: none;
-      margin: 0 10px;
+      font-weight: bold;
       transition: 0.3s;
     }
 
-    footer a:hover {
-      color: #20c978;
-      text-decoration: underline;
+    nav a:hover {
+      opacity: 0.7;
     }
+
+
+    /* ====================
+       メインビジュアル
+    ==================== */
+
+    .hero {
+      max-width: 1100px;
+
+      margin: 50px auto;
+
+      padding: 30px;
+
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero-image {
+      width: 55%;
+      height: 400px;
+
+      background-color: #dff8eb;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 20px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      margin-bottom: 30px;
+    }
+
+
+    /* ====================
+       ボタン
+    ==================== */
+
+    .reserve-button,
+    .submit-button {
+      display: inline-block;
+
+      background-color: #33FF99;
+      color: #222;
+
+      border: none;
+      border-radius: 30px;
+
+      padding: 14px 35px;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .reserve-button:hover,
+    .submit-button:hover {
+      transform: translateY(-2px);
+      opacity: 0.8;
+    }
+
+
+    /* ====================
+       共通セクション
+    ==================== */
+
+    .section {
+      max-width: 900px;
+
+      margin: 80px auto;
+
+      padding: 40px;
+
+      background-color: #fff;
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .section > h2 {
+      font-size: 28px;
+
+      margin-bottom: 30px;
+
+      padding-left: 15px;
+
+      border-left: 5px solid #33FF99;
+    }
+
+
+    /* ====================
+       メニュー
+    ==================== */
+
+    .menu-container {
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu-card {
+      flex: 1;
+
+      padding: 20px;
+
+      border-radius: 15px;
+
+      background-color: #f7fff9;
+
+      text-align: center;
+    }
+
+    .menu-image {
+      height: 180px;
+
+      background-color: #dff8eb;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      margin-bottom: 15px;
+    }
+
+    .menu-card h3 {
+      margin-bottom: 5px;
+    }
+
+    .price {
+      margin-top: 10px;
+
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+
+    /* ====================
+       予約フォーム
+    ==================== */
+
+    .reserve-section {
+      max-width: 700px;
+    }
+
+    .form-item {
+      margin-bottom: 20px;
+    }
+
+    .form-item label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-weight: bold;
+    }
+
+    .form-item input,
+    .form-item select,
+    .form-item textarea {
+      width: 100%;
+
+      padding: 12px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 8px;
+
+      font-size: 16px;
+
+      background-color: #fff;
+    }
+
+    .form-item input:focus,
+    .form-item select:focus,
+    .form-item textarea:focus {
+      outline: none;
+
+      border-color: #33FF99;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+
+    /* ====================
+       アクセス
+    ==================== */
+
+    .access-container {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .access-container > div {
+      flex: 1;
+    }
+
+    .access-container h3 {
+      margin-bottom: 8px;
+
+      color: #20c978;
+    }
+
+
+    /* ====================
+       フッター
+    ==================== */
+
+    footer {
+      background-color: #fff;
+
+      text-align: center;
+
+      padding: 25px;
+
+      margin-top: 80px;
+
+      border-top: 1px solid #eee;
+    }
+
+
+    /* ====================
+       スマートフォン対応
+    ==================== */
+
+    @media (max-width: 768px) {
+
+      header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 20px;
+      }
+
+      nav {
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+      }
+
+      .hero {
+        flex-direction: column;
+
+        margin: 30px auto;
+
+        padding: 20px;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 250px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text h2 {
+        font-size: 28px;
+      }
+
+      .section {
+        margin: 40px 20px;
+
+        padding: 25px;
+      }
+
+      .menu-container {
+        flex-direction: column;
+      }
+
+      .access-container {
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- ヘッダー -->
+
+  <!-- ====================
+       ヘッダー
+  ==================== -->
+
   <header>
-    <h1>My Simple Website</h1>
+
+    <div class="logo">
+      <h1>Cafe Green</h1>
+    </div>
+
+    <nav>
+      <a href="#about">Cafeについて</a>
+      <a href="#menu">メニュー</a>
+      <a href="#reserve">予約</a>
+      <a href="#access">アクセス</a>
+    </nav>
+
   </header>
 
-  <!-- メインコンテンツ -->
+
+  <!-- ====================
+       メイン
+  ==================== -->
+
   <main>
 
-    <section>
-      <h2>私について</h2>
-      <p>
-        このWebサイトは、私の自己紹介について
-        発信しているサイトです。
-         <img src="cupcake.jpg" alt="サンプル">
-      </p>
+
+    <!-- メインビジュアル -->
+
+    <section class="hero">
+
+      <div class="hero-image">
+        <p></p>
+      </div>
+
+      <div class="hero-text">
+
+        <h2>カフェのキャッチコピー</h2>
+
+        <p>
+          10分休んでみませんか？
+        </p>
+
+        <a href="#reserve" class="reserve-button">
+          予約する
+        </a>
+
+      </div>
+
     </section>
 
-    <section>
-      <h2>自己紹介</h2>
+
+    <!-- ====================
+         Cafeについて
+    ==================== -->
+
+    <section id="about" class="section">
+
+      <h2>Cafeについて</h2>
+
       <p>
-        趣味や頑張っていることを発信しています。
-        ご質問やご相談がありましたら、お気軽にお問い合わせください。
+         岐阜県〇〇市××町123-4
+          岐阜駅より徒歩△分
+　　　　　駐車場　５台分あり
+
+　　　　　岐阜県の自然を満喫しながらおいしいご飯を食べることができます‼
+　　　　　都会で疲れた体を休めていきませんか^^
       </p>
+
     </section>
+
+
+    <!-- ====================
+         メニュー
+    ==================== -->
+
+    <section id="menu" class="section">
+
+      <h2>おすすめメニュー</h2>
+
+
+      <div class="menu-container">
+
+
+        <div class="menu-card">
+
+          <div class="https://th.bing.com/th/id/OIP.niJXgVLvhLBcusJgo-OUSQHaE8?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3">
+            
+          </div>
+
+          <h3>コーヒー</h3>
+
+          <p>
+            ホットかアイス選べます
+          </p>
+
+          <p class="price">
+            ¥300
+          </p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+          <div class="https://www.cotta.jp/upload/save_image/cotta_column/column/2023/08/20230723_nozomi_eye.jpg">
+            
+          </div>
+
+          <h3>パンケーキ</h3>
+
+          <p>
+            ふっくらした生地で当店自慢の一品です
+          </p>
+
+          <p class="price">
+            ¥650
+          </p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+          <div class="https://research.image.itmedia.co.jp/wp-content/uploads/2023/06/1687490942_pixta_95109112_M-min.jpg">
+            
+          </div>
+
+          <h3>ナポリタン</h3>
+
+          <p>
+            ケチャップの甘酸っぱさと香ばしさが自慢！
+          </p>
+
+          <p class="price">
+            ¥700
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================
+         予約
+    ==================== -->
+
+    <section id="reserve" class="section reserve-section">
+
+      <h2>予約</h2>
+
+
+      <form>
+
+
+        <div class="form-item">
+
+          <label for="date">
+            ご来店日
+          </label>
+
+          <input
+            type="date"
+            id="date"
+            name="date"
+          >
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="time">
+            ご来店時間
+          </label>
+
+          <select id="time" name="time">
+
+            <option value="">
+              選択してください
+            </option>
+
+            <option value="11:00">
+              11:00
+            </option>
+
+            <option value="12:00">
+              12:00
+            </option>
+
+            <option value="13:00">
+              13:00
+            </option>
+
+            <option value="14:00">
+              14:00
+            </option>
+
+            <option value="17:00">
+              17:00
+            </option>
+
+            <option value="18:00">
+              18:00
+            </option>
+
+            <option value="19:00">
+              19:00
+            </option>
+
+            <option value="20:00">
+              20:00
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="people">
+            人数
+          </label>
+
+          <select id="people" name="people">
+
+            <option value="">
+              選択してください
+            </option>
+
+            <option value="1">
+              1名
+            </option>
+
+            <option value="2">
+              2名
+            </option>
+
+            <option value="3">
+              3名
+            </option>
+
+            <option value="4">
+              4名
+            </option>
+
+            <option value="5">
+              5名
+            </option>
+
+            <option value="6">
+              6名
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="name">
+            お名前
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="お名前を入力"
+          >
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="email">
+            メールアドレス
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@example.com"
+          >
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="phone">
+            電話番号
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="090-0000-0000"
+          >
+
+        </div>
+
+
+        <div class="form-item">
+
+          <label for="message">
+            その他・ご要望
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="ご要望などがあれば入力してください"
+          ></textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          予約を申し込む
+        </button>
+
+
+      </form>
+
+    </section>
+
+
+    <!-- ====================
+         アクセス
+    ==================== -->
+
+    <section id="access" class="section">
+
+      <h2>アクセス</h2>
+
+
+      <div class="access-container">
+
+
+        <div>
+
+          <h3>住所</h3>
+
+          <p>
+            〒000-0000
+          </p>
+
+          <p>
+            住所をここに入力します。
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>営業時間</h3>
+
+          <p>
+            00:00〜00:00
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3>定休日</h3>
+
+          <p>
+            ○曜日
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
 
   </main>
 
-  <!-- フッター -->
+
+  <!-- ====================
+       フッター
+  ==================== -->
+
   <footer>
-    <p>お問い合わせ：info@example.com</p>
 
     <p>
-      <a href="https://twitter.com/" target="_blank">X</a>
-      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+      © 2026 Cafe Green
     </p>
+
   </footer>
+
 
 </body>
 </html>
+```
